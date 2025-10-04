@@ -9,7 +9,7 @@ public class RacketController : MonoBehaviour
     public KeyCode downKey = KeyCode.S; // Tecla para mover hacia abajo (S - Down Arrow)
 
     [Header("Movimiento")]
-    public float speed = 40f; // Velocidad de movimiento de la raqueta
+    public float speed = 50f; // Velocidad de movimiento de la raqueta
     public float margin = 0.5f; // Margen para no salirse de la pantalla
 
     Rigidbody2D rb; // Referncia al cuerpo fisico de la raqueta
