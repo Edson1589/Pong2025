@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     int rightScore = 0;
     int highScore = 0; // Puntuaci�n m�s alta guardada
 
+    // Para el sonido al hacer un punto
+    public AudioSource sfxAS;
+    public AudioClip pingSFX;
     void Start()
     {
         // Cargar la puntuacion mas alta guardada (0 si no existe)
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
     // M�todo que suma puntos al jugador de la izquierda
     public void ScoreLeft()
     {
+        sfxAS.PlayOneShot(pingSFX);
         leftScore++;
         leftScoreText.text = leftScore.ToString();
         CheckHighScore(leftScore); // Verifica si hay nuevo r�cord
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
     // M�todo que suma puntos al jugador de la derecha
     public void ScoreRight()
     {
+        sfxAS.PlayOneShot(pingSFX);
         rightScore++;
         rightScoreText.text = rightScore.ToString();
         CheckHighScore(rightScore); // Verifica si hay nuevo r�cord

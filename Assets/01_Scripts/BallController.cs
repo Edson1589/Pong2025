@@ -9,6 +9,10 @@ public class BallController : MonoBehaviour
     public float speed = 12f; // Velocidad de la pelota
     public float baseSpeed; // Velocidad inicial para reiniciar
     Rigidbody2D rb; // referencia al cuerpo fisico de la pelota
+
+    // Para el sonido al rebotar
+    public AudioSource sfxAS;
+    public AudioClip boingSFX;
     void Start()
     {
         baseSpeed = speed; // Guardar la velocidad base al iniciar
@@ -49,6 +53,7 @@ public class BallController : MonoBehaviour
         // Si colisiona con la raqueta sube la velocidad de la pelota
         if (collision.collider.CompareTag("Racket"))
         {
+            sfxAS.PlayOneShot(boingSFX); // Reproducir el sonido
             IncreaseSpeed(1f);
         }
     }
