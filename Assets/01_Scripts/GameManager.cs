@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    // Texto para mostrar la puntuacion mas alta
     public TextMeshProUGUI highScoreText;
 
     int highScore = 0;
