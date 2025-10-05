@@ -10,16 +10,16 @@ public class GameManager : MonoBehaviour
     // Referencias a los textos UI del marcador
     public TextMeshProUGUI leftScoreText;
     public TextMeshProUGUI rightScoreText;
-    public TextMeshProUGUI highScoreText; // Nuevo texto para mostrar la mejor puntuación
+    public TextMeshProUGUI highScoreText; // Nuevo texto para mostrar la mejor puntuaciï¿½n
 
     // Contadores internos de puntos
     int leftScore = 0;
     int rightScore = 0;
-    int highScore = 0; // Puntuación más alta guardada
+    int highScore = 0; // Puntuaciï¿½n mï¿½s alta guardada
 
     void Start()
     {
-        // Cargar la puntuación más alta guardada (0 si no existe)
+        // Cargar la puntuacion mas alta guardada (0 si no existe)
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         highScoreText.text = "High Score: " + highScore.ToString();
 
@@ -28,31 +28,33 @@ public class GameManager : MonoBehaviour
         rightScoreText.text = rightScore.ToString();
     }
 
-    // Método que suma puntos al jugador de la izquierda
+    // Mï¿½todo que suma puntos al jugador de la izquierda
     public void ScoreLeft()
     {
         leftScore++;
         leftScoreText.text = leftScore.ToString();
-        CheckHighScore(leftScore); // Verifica si hay nuevo récord
+        CheckHighScore(leftScore); // Verifica si hay nuevo rï¿½cord
+        ball.ResetSpeed(); // Reiniciar la velocidad de la pelota
         ball.Launch(-1);
     }
 
-    // Método que suma puntos al jugador de la derecha
+    // Mï¿½todo que suma puntos al jugador de la derecha
     public void ScoreRight()
     {
         rightScore++;
         rightScoreText.text = rightScore.ToString();
-        CheckHighScore(rightScore); // Verifica si hay nuevo récord
+        CheckHighScore(rightScore); // Verifica si hay nuevo rï¿½cord
+        ball.ResetSpeed(); // Reiniciar la velocidad de la pelota
         ball.Launch(1);
     }
 
-    // Método para comprobar y guardar la mejor puntuación
+    // Mï¿½todo para comprobar y guardar la mejor puntuaciï¿½n
     void CheckHighScore(int score)
     {
         if (score > highScore)
         {
             highScore = score;
-            PlayerPrefs.SetInt("HighScore", highScore); // Guarda la nueva puntuación más alta
+            PlayerPrefs.SetInt("HighScore", highScore); // Guarda la nueva puntuaciï¿½n mï¿½s alta
             PlayerPrefs.Save();
             highScoreText.text = "High Score: " + highScore.ToString();
         }
