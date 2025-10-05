@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     // Referencias a los textos UI del marcador
     public TextMeshProUGUI leftScoreText;
     public TextMeshProUGUI rightScoreText;
+
+    public int scoreToWin = 10;
 
     // Contadores internos de puntos
     int leftScore = 0;
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
         leftScoreText.text = leftScore.ToString();
         CheckHighScore(leftScore); // Verifica si hay nuevo r�cord
         ball.ResetSpeed();
+        if (CheckGameOver()) return;
         ball.Launch(-1);
     }
 
@@ -53,6 +57,7 @@ public class GameManager : MonoBehaviour
         rightScoreText.text = rightScore.ToString();
         CheckHighScore(rightScore); // Verifica si hay nuevo r�cord
         ball.ResetSpeed();
+        if (CheckGameOver()) return;
         ball.Launch(1);
     }
 
@@ -66,5 +71,26 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", highScore);
             highScoreText.text = "HighScore: " + highScore.ToString();
         }
+    }
+
+    bool CheckGameOver()
+    {
+        if (leftScore >= scoreToWin)
+        {
+            GameSession.LeftScore = leftScore;
+            GameSession.RightScore = rightScore;
+            GameSession.Winner = "Izquierda";
+            SceneManager.LoadScene("GameOver");
+            return true;
+        }
+        if (rightScore >= scoreToWin)
+        {
+            GameSession.LeftScore = leftScore;
+            GameSession.RightScore = rightScore;
+            GameSession.Winner = "Derecha";
+            SceneManager.LoadScene("GameOver");
+            return true;
+        }
+        return false;
     }
 }
