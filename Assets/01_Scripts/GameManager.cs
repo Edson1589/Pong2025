@@ -11,9 +11,10 @@ public class GameManager : MonoBehaviour
 
     public BallController ball; // Referencia a la pelota para poder reiniciarla/lanzarla
 
-    //Referencias a los textos UI del marcador
+    // Referencias a los textos UI del marcador
     public TextMeshProUGUI leftScoreText;
     public TextMeshProUGUI rightScoreText;
+    public TextMeshProUGUI highScoreText; // Nuevo texto para mostrar la mejor puntuación
 
     // Contadores internos de puntos
     int leftScore = 0;
@@ -24,12 +25,23 @@ public class GameManager : MonoBehaviour
         highScoreText.text = "Highest Score: " + highScore.ToString();
     }
 
-    // Metodo que suma puntos al jugador de la izquierda y actualiza el marcador.
-    // Luego lanza la pelota hacia la izquierda (-1 = izquierda, 1 = derecha)
+    void Start()
+    {
+        // Cargar la puntuación más alta guardada (0 si no existe)
+        highScore = PlayerPrefs.GetInt("HighScore", 0);
+        highScoreText.text = "High Score: " + highScore.ToString();
+
+        // Inicializar los textos del marcador
+        leftScoreText.text = leftScore.ToString();
+        rightScoreText.text = rightScore.ToString();
+    }
+
+    // Método que suma puntos al jugador de la izquierda
     public void ScoreLeft()
     {
         leftScore++;
         leftScoreText.text = leftScore.ToString();
+        CheckHighScore(leftScore); // Verifica si hay nuevo récord
         ball.Launch(-1);
         CheckHighScore();
     }
@@ -38,6 +50,7 @@ public class GameManager : MonoBehaviour
     {
         rightScore++;
         rightScoreText.text = rightScore.ToString();
+        CheckHighScore(rightScore); // Verifica si hay nuevo récord
         ball.Launch(1);
         CheckHighScore();
     }
@@ -49,7 +62,7 @@ public class GameManager : MonoBehaviour
         {
             highScore = currentScore;
             PlayerPrefs.SetInt("HighScore", highScore);
-            highScoreText.text = "Puntaje M�ximo: " + highScore.ToString();
+            highScoreText.text = "Puntaje Máximo: " + highScore.ToString();
         }
     }
 
