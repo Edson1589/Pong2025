@@ -1,4 +1,4 @@
 Integrantes:
-Jhael Elisa Guevara Silva 
-Leandro Suarez
-Marcelo Cayo Ali
+Jhael Elisa Guevara Silva -
+Leandro Suarez -
+Marcelo Cayo Ali -
