@@ -14,22 +14,16 @@ public class GameManager : MonoBehaviour
     // Referencias a los textos UI del marcador
     public TextMeshProUGUI leftScoreText;
     public TextMeshProUGUI rightScoreText;
-    public TextMeshProUGUI highScoreText; // Nuevo texto para mostrar la mejor puntuación
 
     // Contadores internos de puntos
     int leftScore = 0;
     int rightScore = 0;
-    void Start()
-    {
-        highScore = PlayerPrefs.GetInt("HighScore", 0);
-        highScoreText.text = "Highest Score: " + highScore.ToString();
-    }
 
     void Start()
     {
         // Cargar la puntuación más alta guardada (0 si no existe)
         highScore = PlayerPrefs.GetInt("HighScore", 0);
-        highScoreText.text = "High Score: " + highScore.ToString();
+        highScoreText.text = "Puntaje Máximo: " + highScore.ToString();
 
         // Inicializar los textos del marcador
         leftScoreText.text = leftScore.ToString();
@@ -41,20 +35,20 @@ public class GameManager : MonoBehaviour
     {
         leftScore++;
         leftScoreText.text = leftScore.ToString();
-        CheckHighScore(leftScore); // Verifica si hay nuevo récord
-        ball.Launch(-1);
         CheckHighScore();
+        ball.Launch(-1);
     }
 
+    // Método que suma puntos al jugador de la derecha
     public void ScoreRight()
     {
         rightScore++;
         rightScoreText.text = rightScore.ToString();
-        CheckHighScore(rightScore); // Verifica si hay nuevo récord
-        ball.Launch(1);
         CheckHighScore();
+        ball.Launch(1);
     }
 
+    // Verifica si hay nuevo récord y lo actualiza
     void CheckHighScore()
     {
         int currentScore = Mathf.Max(leftScore, rightScore);
@@ -65,5 +59,4 @@ public class GameManager : MonoBehaviour
             highScoreText.text = "Puntaje Máximo: " + highScore.ToString();
         }
     }
-
 }
