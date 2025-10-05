@@ -667,6 +667,7 @@ MonoBehaviour:
   ball: {fileID: 1383395997}
   leftScoreText: {fileID: 1999629631}
   rightScoreText: {fileID: 1796737772}
+  highScoreText: {fileID: 0}
 --- !u!4 &841853185
 Transform:
   m_ObjectHideFlags: 0
@@ -1299,6 +1300,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
+  baseSpeed: 0
+  sfxAS: {fileID: 0}
+  boingSFX: {fileID: 0}
 --- !u!1 &1430201321
 GameObject:
   m_ObjectHideFlags: 0

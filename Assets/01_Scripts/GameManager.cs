@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    // Texto para mostrar la puntuacion mas alta
     public TextMeshProUGUI highScoreText;
 
     int highScore = 0;
@@ -19,9 +20,12 @@ public class GameManager : MonoBehaviour
     int leftScore = 0;
     int rightScore = 0;
 
+    // Para el sonido al hacer un punto
+    public AudioSource sfxAS;
+    public AudioClip pingSFX;
     void Start()
     {
-        // Cargar la puntuación más alta guardada (0 si no existe)
+        // Cargar la puntuaci�n m�s alta guardada (0 si no existe)
         highScore = PlayerPrefs.GetInt("HighScore", 0);
         highScoreText.text = "Puntaje Máximo: " + highScore.ToString();
 
@@ -33,18 +37,20 @@ public class GameManager : MonoBehaviour
     // Método que suma puntos al jugador de la izquierda
     public void ScoreLeft()
     {
+        sfxAS.PlayOneShot(pingSFX);
         leftScore++;
         leftScoreText.text = leftScore.ToString();
-        CheckHighScore();
+        CheckHighScore(leftScore); // Verifica si hay nuevo r�cord
         ball.Launch(-1);
     }
 
     // Método que suma puntos al jugador de la derecha
     public void ScoreRight()
     {
+        sfxAS.PlayOneShot(pingSFX);
         rightScore++;
         rightScoreText.text = rightScore.ToString();
-        CheckHighScore();
+        CheckHighScore(rightScore); // Verifica si hay nuevo r�cord
         ball.Launch(1);
     }
 
