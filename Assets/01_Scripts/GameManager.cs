@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     {
         // Cargar la puntuación más alta guardada (0 si no existe)
         highScore = PlayerPrefs.GetInt("HighScore", 0);
-        highScoreText.text = "Puntaje Máximo: " + highScore.ToString();
+        highScoreText.text = "HighScore: " + highScore.ToString();
 
         // Inicializar los textos del marcador
         leftScoreText.text = leftScore.ToString();
