@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
         leftScore++;
         leftScoreText.text = leftScore.ToString();
         CheckHighScore(leftScore); // Verifica si hay nuevo r�cord
+        ball.ResetSpeed();
         ball.Launch(-1);
     }
 
@@ -51,18 +52,19 @@ public class GameManager : MonoBehaviour
         rightScore++;
         rightScoreText.text = rightScore.ToString();
         CheckHighScore(rightScore); // Verifica si hay nuevo r�cord
+        ball.ResetSpeed();
         ball.Launch(1);
     }
 
     // Verifica si hay nuevo récord y lo actualiza
-    void CheckHighScore()
+    void CheckHighScore(int score)
     {
         int currentScore = Mathf.Max(leftScore, rightScore);
         if (currentScore > highScore)
         {
             highScore = currentScore;
             PlayerPrefs.SetInt("HighScore", highScore);
-            highScoreText.text = "Puntaje Máximo: " + highScore.ToString();
+            highScoreText.text = "HighScore: " + highScore.ToString();
         }
     }
 }

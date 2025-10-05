@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene"); // Aseg�rate de que la escena del juego se llame "GameScene"
+        SceneManager.LoadScene("GameScenePong"); // Aseg�rate de que la escena del juego se llame "GameScene"
 
     }
     public void QuitGame()

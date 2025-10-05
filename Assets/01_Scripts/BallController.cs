@@ -53,6 +53,11 @@ public class BallController : MonoBehaviour
         // Si colisiona con la raqueta sube la velocidad de la pelota
         if (collision.collider.CompareTag("Racket"))
         {
+            float offset = transform.position.y - collision.transform.position.y;
+            Vector2 v = rb.velocity;
+            v.y += offset * 2f;
+            rb.velocity = v.normalized * speed;
+
             sfxAS.PlayOneShot(boingSFX); // Reproducir el sonido
             IncreaseSpeed(1f);
         }
